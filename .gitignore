@@ -2,4 +2,6 @@ HISTORY.txt
 README.txt
 *.in
 *.out
+*.myout
+checkproject
 *.DS_Store
