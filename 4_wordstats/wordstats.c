@@ -1,4 +1,5 @@
 // Sameh Shahin ew20b001
+// V1 revised (without feedback just self correcting)
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -20,53 +21,32 @@ int main()
 {
 
     int max_word_length = 63;
-    int initial_size = 6; // initial amount of words expected .. realloate if exceded (last test case)
+    char input_word[max_word_length];
 
-    int input_loop_counter = 0;
+    int initial_size = 6; // initial amount of words expected .. realloate if exceded (last test case)
     int words_counter = 0;
 
     word *words_dyn_array = (word *)malloc(initial_size * sizeof(word));
 
-    char input_word[max_word_length];
-    input_word[0] = '\0';
-    char input_char;
+    scanf("%s", &input_word);
 
-    for (input_loop_counter = 0; input_loop_counter < max_word_length; input_loop_counter++)
+    while (strcmp(input_word, ".") != 0)
     {
+        //  theoretically this should also break long words into Multiple words but I didn't test it
 
-        scanf("%c", &input_char);
-
-        if (input_char == '.')
+        if (check_word(max_word_length, input_word, words_counter, initial_size, words_dyn_array) != 0)
         {
-            break;
+            // store the word and get it's info
+            word input_word_info = store_word(max_word_length, input_word);
+
+            // store the word information in the words dynamic array
+            store_word_in_dyn_array(input_word_info, words_counter, &initial_size, &words_dyn_array);
+
+            // keep track of how many words are added
+            words_counter++;
         }
-        else if (isspace(input_char) || input_loop_counter == max_word_length)
-        {
-            //  theoretically this should also break long words into Multiple words but I didn't test it
-
-            if (check_word(max_word_length, input_word, words_counter, initial_size, words_dyn_array) != 0)
-            {
-                // store the word and get it's info
-                word input_word_info = store_word(max_word_length, input_word);
-
-                // store the word information in the words dynamic array
-                store_word_in_dyn_array(input_word_info, words_counter, &initial_size, &words_dyn_array);
-
-                // keep track of how many words are added
-                words_counter++;
-            }
-
-            // reset the current word holder
-            input_word[0] = "\0";
-            input_loop_counter = -1;
-        }
-        else
-        {
-            // continue building/reading the word
-            input_word[input_loop_counter] = input_char;
-            input_word[input_loop_counter + 1] = '\0';
-        }
-    };
+        scanf("%s", &input_word);
+    }
 
     // the variable words_counter can be used but just to make sure i'm getting the right data
     printf("%d\n", count_words_array(words_dyn_array));
