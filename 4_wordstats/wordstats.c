@@ -32,8 +32,6 @@ int main()
 
     while (strcmp(input_word, ".") != 0)
     {
-        //  theoretically this should also break long words into Multiple words but I didn't test it
-
         if (check_word(max_word_length, input_word, words_counter, initial_size, words_dyn_array) != 0)
         {
             // store the word and get it's info
