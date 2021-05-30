@@ -5,3 +5,4 @@ README.txt
 *.myout
 checkproject
 *.DS_Store
+.vscode/settings.json
