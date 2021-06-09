@@ -11,7 +11,7 @@ int main()
     stack_node *stack_head = (stack_node *)malloc(sizeof(stack_node));
 
     // read an initial input
-    scanf("%s", &input[0]); // Apparently this way of reading strings is beeter than using (&input) .. and it removes the warnings so I used it
+    scanf("%s", input);
     while (strcmp(input, "=") != 0)
     {
         // check type
@@ -53,7 +53,7 @@ int main()
         }
 
         // read the next input
-        scanf("%s", &input[0]);
+        scanf("%s", input);
     };
     printf("%d\n", stack_head->value);
 
