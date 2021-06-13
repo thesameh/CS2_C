@@ -20,7 +20,7 @@ enum directions
 void print_board(int l, char board[l][l]);
 void change_color_and_direction(langton_ant *ant, char *board);
 void move(langton_ant *ant);
-int get_pos_int(int i);
+int get_positive_int(int i);
 
 int main()
 {
@@ -38,12 +38,15 @@ int main()
 
     board[ant.x][ant.y] = 'a'; // place the ant
 
-    for (int moves = 0; moves < turns; moves++)
+    for (int moves = 1; moves <= turns; moves++)
     {
 
-        change_color_and_direction(&ant, &board[ant.x][ant.y]);
-        move(&ant);
+        change_color_and_direction(&ant, &board[ant.x][ant.y]); // update the board based on the current ant position
+        move(&ant);                                             // change the ant's position
 
+        //printf("move:%d X:%d Y:%d \n", moves, ant.x, ant.y);
+
+        // check if the ant is still inside the board (logic: it should be able to get out but can't get back in)
         if (ant.x >= 0 && ant.x < 10 && ant.y >= 0 && ant.y < 10)
         {
             board[ant.x][ant.y] = board[ant.x][ant.y] == '#' ? 'A' : 'a';
@@ -74,10 +77,10 @@ void change_color_and_direction(langton_ant *ant, char *board)
     }
 }
 
-// move to the next square by changing the ant's coordinates
+// move to the next square by changing the ant's coordinates directly using pointers
 void move(langton_ant *ant)
 {
-    switch (get_pos_int(ant->d) % 4)
+    switch (get_positive_int(ant->d) % 4)
     {
     case north:
         ant->x--;
@@ -94,7 +97,7 @@ void move(langton_ant *ant)
     }
 }
 
-int get_pos_int(int i)
+int get_positive_int(int i)
 {
     return i < 0 ? i * -1 : i;
 }
