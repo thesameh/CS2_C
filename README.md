@@ -1,6 +1,6 @@
-## CS2
+# CS2 #
 
-The solution for a set of _C_ exercises in the scope of my study at FH Technikum (second semester)
+The solutions for a set of _C_ exercises in the scope of my study at FH Technikum wien (second semester)
 
 ### 1_calc ###
 a simple calculator
