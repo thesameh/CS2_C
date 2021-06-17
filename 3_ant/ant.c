@@ -44,17 +44,18 @@ int main()
         change_color_and_direction(&ant, &board[ant.x][ant.y]); // update the board based on the current ant position
         move(&ant);                                             // change the ant's position
 
-        //printf("move:%d X:%d Y:%d \n", moves, ant.x, ant.y);
-
-        // check if the ant is still inside the board (logic: it should be able to get out but can't get back in)
+        // check if the ant is still inside the board  (logic: it should be able to get out but can't get back in, 10 means it's already out since the count starts from 0)
         if (ant.x >= 0 && ant.x < 10 && ant.y >= 0 && ant.y < 10)
         {
-            board[ant.x][ant.y] = board[ant.x][ant.y] == '#' ? 'A' : 'a';
+            board[ant.x][ant.y] = board[ant.x][ant.y] == '#' ? 'A' : 'a'; // mark the current position of the ant
         }
         else
         {
-            break;
+            break; // stop the movement when it's outside the board
         }
+
+        //printf("move:%d X:%d Y:%d \n", moves, ant.x, ant.y);
+        //print_board(board_size, board);
     }
 
     print_board(board_size, board);
