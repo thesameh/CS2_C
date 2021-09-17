@@ -1,5 +1,12 @@
 // Sameh Shahin ew20b001
 
+/* V2 
+** I only made some minor changes mainly because I didn't really understand the problem, 
+** you say I never change the values of the ant's X and Y in change_color_and_direction() which is correct cause that function only changes the board and the direction of the ant
+** move() is the function that changes the Ant's X and Y using pointers directly so no need to return and reassign to the ant variable
+** the comments on lines 64,65 provide a nice step-by-step visualization to the ant's move and X,Y values
+*/
+
 #include <stdio.h>
 
 typedef struct
